@@ -1,9 +1,9 @@
 require 'formula'
 
 class RomTools < Formula
-  homepage 'http://www.mess.org/'
-  url 'svn://dspnet.fr/mame/trunk', :revision => '20928'
-  version '0.148u1'
+  homepage 'http://mamedev.org/'
+  url 'svn://dspnet.fr/mame/trunk', :revision => '21963'
+  version '0.148u2'
 
   head 'svn://dspnet.fr/mame/trunk'
 
@@ -12,18 +12,21 @@ class RomTools < Formula
 
   def install
     ENV['MACOSX_USE_LIBSDL'] = '1'
-    ENV['INCPATH'] = "-I./src/lib/util -I#{MacOS::X11.include}"
+    ENV['INCPATH'] = "-I#{MacOS::X11.include}"
     ENV['PTR64'] = (MacOS.prefer_64_bit? ? '1' : '0')
 
-    system 'make romcmp'
-    system 'make jedutil'
-    system 'make chdman'
-    system 'make tools'
+    system 'make', "CC=#{ENV.cc}", "LD=#{ENV.cxx}", 'tools'
+    system 'make', "CC=#{ENV.cc}", "LD=#{ENV.cxx}", 'TARGET=ldplayer'
 
     bin.install %W[
-      castool chdman floptool imgtool jedutil ldresample ldverify regreg
-      romcmp src2htm srcclean testkeys unidasm
+      chdman jedutil ldresample ldverify regrep romcmp src2html srcclean
+      testkeys unidasm
     ]
     bin.install 'split' => 'rom-split'
+    if MacOS.prefer_64_bit?
+      bin.install 'ldplayer64' => 'ldplayer'
+    else
+      bin.install 'ldplayer'
+    end
   end
 end
