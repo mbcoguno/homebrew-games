@@ -2,12 +2,11 @@ require "formula"
 
 class RomTools < Formula
   homepage "http://mamedev.org/"
-  url "svn://dspnet.fr/mame/trunk", :revision => "29406"
-  version "0.153"
+  url "svn://dspnet.fr/mame/trunk", :revision => "31397"
+  version "0.154"
 
   head "svn://dspnet.fr/mame/trunk"
 
-  depends_on :x11
   depends_on "sdl"
 
   # Keep bus part in separate library can make visual studio builds possible,
@@ -16,7 +15,6 @@ class RomTools < Formula
 
   def install
     ENV["MACOSX_USE_LIBSDL"] = "1"
-    ENV["INCPATH"] = "-I#{MacOS::X11.include}"
     ENV["PTR64"] = (MacOS.prefer_64_bit? ? "1" : "0")
 
     system "make", "CC=#{ENV.cc}", "LD=#{ENV.cxx}", "tools"
@@ -52,8 +50,8 @@ index 47db5dc..8e22b9d 100644
 
  ifndef EXECUTABLE_DEFINED
 
--$(EMULATOR): $(EMUINFOOBJ) $(DRIVLISTOBJ) $(DRVLIBS) $(LIBOSD) $(LIBBUS) $(LIBOPTIONAL) $(LIBEMU) $(LIBDASM) $(LIBUTIL) $(EXPAT) $(SOFTFLOAT) $(JPEG_LIB) $(FLAC_LIB) $(7Z_LIB) $(FORMATS_LIB) $(LUA_LIB) $(WEB_LIB) $(ZLIB) $(LIBOCORE) $(MIDI_LIB) $(RESFILE)
-+$(EMULATOR): $(EMUINFOOBJ) $(DRIVLISTOBJ) $(DRVLIBS) $(LIBOSD) $(LIBOPTIONAL) $(LIBEMU) $(LIBDASM) $(LIBUTIL) $(EXPAT) $(SOFTFLOAT) $(JPEG_LIB) $(FLAC_LIB) $(7Z_LIB) $(FORMATS_LIB) $(LUA_LIB) $(WEB_LIB) $(ZLIB) $(LIBOCORE) $(MIDI_LIB) $(RESFILE)
+-$(EMULATOR): $(EMUINFOOBJ) $(DRIVLISTOBJ) $(DRVLIBS) $(LIBOSD) $(LIBBUS) $(LIBOPTIONAL) $(LIBEMU) $(LIBDASM) $(LIBUTIL) $(EXPAT) $(SOFTFLOAT) $(JPEG_LIB) $(FLAC_LIB) $(7Z_LIB) $(FORMATS_LIB) $(LUA_LIB) $(SQLITE3_LIB) $(WEB_LIB) $(ZLIB) $(LIBOCORE) $(MIDI_LIB) $(RESFILE)
++$(EMULATOR): $(EMUINFOOBJ) $(DRIVLISTOBJ) $(DRVLIBS) $(LIBOSD) $(LIBOPTIONAL) $(LIBEMU) $(LIBDASM) $(LIBUTIL) $(EXPAT) $(SOFTFLOAT) $(JPEG_LIB) $(FLAC_LIB) $(7Z_LIB) $(FORMATS_LIB) $(LUA_LIB) $(SQLITE3_LIB) $(WEB_LIB) $(ZLIB) $(LIBOCORE) $(MIDI_LIB) $(RESFILE)
  	$(CC) $(CDEFS) $(CFLAGS) -c $(SRC)/version.c -o $(VERSIONOBJ)
  	@echo Linking $@...
  	$(LD) $(LDFLAGS) $(LDFLAGSEMULATOR) $(VERSIONOBJ) $^ $(LIBS) -o $@
