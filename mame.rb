@@ -13,6 +13,10 @@ class Mame < Formula
     ENV["MACOSX_USE_LIBSDL"] = "1"
     ENV["PTR64"] = (MacOS.prefer_64_bit? ? "1" : "0")
 
+    if ENV.compiler == :clang or /^gcc-(4\.[6-9])$/.match ENV.compiler
+      ENV["LTO"] = "1"
+    end
+
     system "make", "CC=#{ENV.cc}", "LD=#{ENV.cxx}",
                    "TARGET=mame", "SUBTARGET=mame"
 
