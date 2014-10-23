@@ -3,7 +3,7 @@ require "formula"
 class Mame < Formula
   homepage "http://mamedev.org/"
   url "https://github.com/mamedev/mame/archive/mame0155.tar.gz"
-  sha1 "0e56d53dd6dd916b3c29387112a7042befc501bd"
+  sha1 "9f4e92491bf56f2ea76f136daa69dbf88e589b71"
   version "0.155"
 
   head "https://github.com/mamedev/mame.git"
