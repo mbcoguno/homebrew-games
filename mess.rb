@@ -1,8 +1,8 @@
 class Mess < Formula
   homepage "http://www.mess.org/"
-  url "https://github.com/mamedev/mame/archive/mame0160.tar.gz"
-  sha1 "506c49be812d12a04913b46acac2aed2025df1ff"
-  version "0.160"
+  url "https://github.com/mamedev/mame/archive/mame0161.tar.gz"
+  sha256 "f7db934676e90d0d7f2b678ccf32e580417c754dd33117ec683560956c2130b9"
+  version "0.161"
 
   head "https://github.com/mamedev/mame.git"
 
@@ -16,10 +16,16 @@ class Mess < Formula
 
   depends_on "sdl2"
 
+  # Use OpenGL extensions for non-framework SDL 2 environment.
+  # Upstream: <https://github.com/mamedev/mame/pull/170>
+  patch do
+    url "https://github.com/mbcoguno/mame/commit/05f71a27f9.diff"
+    sha256 "d7c82d97cc9367226b44bcd174b98ce56f96b034f12a0af7cae1da76065a947c"
+  end
+
   def install
     ENV["MACOSX_USE_LIBSDL"] = "1"
     ENV["PTR64"] = MacOS.prefer_64_bit? ? "1" : "0"
-    ENV["LTO"] = "1" if (ENV.compiler == :clang && MacOS.version > :lion) || ENV.compiler =~ /^gcc-(4\.[6-9])$/
 
     system "make", "CC=#{ENV.cc}", "LD=#{ENV.cxx}",
                    "TARGET=mess", "SUBTARGET=mess"
