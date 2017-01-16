@@ -6,6 +6,7 @@ class Nethack < Formula
   url "https://downloads.sourceforge.net/project/nethack/nethack/3.6.0/nethack-360-src.tgz"
   version "3.6.0"
   sha256 "1ade698d8458b8d87a4721444cb73f178c74ed1b6fde537c12000f8edf2cb18a"
+  head "git://git.code.sf.net/p/nethack/NetHack", :branch => "NetHack-3.6.0"
 
   bottle do
     sha256 "084d5b20224c58b8564ddd42e689c4774be6ae25e59e22b5d48e2857bd14c57b" => :el_capitan
