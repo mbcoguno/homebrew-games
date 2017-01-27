@@ -17,9 +17,9 @@ class Mgba < Formula
 
   bottle do
     cellar :any
-    sha256 "8f6948ce5e2cbb9c3f3aaa36a5535c41c1d40f7f985722853ea9aa55fbb741fc" => :sierra
-    sha256 "b1bdcdc3aa6abb4bf975b142ebedad8aa44138910deb369e33c789f0e49a73f0" => :el_capitan
-    sha256 "661a6e5166d2cd3a2e2a9af0f076363b4c5addac688f45c1a6fc7b7ec67328d7" => :yosemite
+    sha256 "6c14c5b6c16b661b1219f0c85e1fb6be5cc106d01ececc89474c860592807625" => :sierra
+    sha256 "cc0b67eb0f5bed1d38942174c46471bcc329a1d214f239e71fa280653ab0e60f" => :el_capitan
+    sha256 "d8fa03dc72b58c430e2b8b6dc382e84b0ccff5c2faafcbca93fcc8b307ee5749" => :yosemite
   end
 
   depends_on "cmake" => :build
