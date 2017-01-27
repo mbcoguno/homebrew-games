@@ -8,9 +8,9 @@ class Pc6001vx < Formula
 
   bottle do
     cellar :any
-    sha256 "83624d963ab2211101c4c2f862025974b921081e1ec5b0ba5d917f32f657d9fa" => :el_capitan
-    sha256 "faf4f70dfffa85a25e3c11c9419c82b03ad67a779dc19a043864dbfbf00d3255" => :yosemite
-    sha256 "3642c11f7fcca354f8e3ab07f0d54c599b8ec79afd04bea822986c3c5b158628" => :mavericks
+    sha256 "42beba7cb2d6d32b89f967a9e834bd833b4ad5bddb2fed32dd00bf5447dabb66" => :sierra
+    sha256 "514347a708086aa5d590ebedf7ea0682195546ccf21e9d81082e46b3448c76aa" => :el_capitan
+    sha256 "8bdc3a0e6e8c5b32f476a87c5057269de0a179ee3eb8e07d10f3524584f4708f" => :yosemite
   end
 
   depends_on "qt@5.7"
